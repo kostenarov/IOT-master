@@ -57,7 +57,8 @@ def get_latest_map():
     for car in data['cars']:
         if car['locations']:
             latest_location = max(car['locations'], key=lambda x: x['timestamp'])
-            latest_locations.append({'latitude': latest_location['coordinates']['latitude'], 'longitude': latest_location['coordinates']['longitude']})
+            latest_locations.append({'latitude': latest_location['coordinates']['latitude'],
+                                     'longitude': latest_location['coordinates']['longitude']})
     if len(latest_locations) == 0:
         return jsonify({'error': 'Cars not found.'}), 404
     return render_template('map.html', coordinates=latest_locations)
@@ -70,11 +71,12 @@ def get_furthest_map():
     for car in data['cars']:
         furthest_location = max(car['locations'], key=lambda x: geodesic(reference_location, (
         x['coordinates']['latitude'], x['coordinates']['longitude'])).km)
-        furthest_locations.append({'latitude': furthest_location['coordinates']['latitude'], 'longitude': furthest_location['coordinates']['longitude']})
+        furthest_locations.append({'latitude': furthest_location['coordinates']['latitude'],
+                                   'longitude': furthest_location['coordinates']['longitude']})
     if len(furthest_locations) == 0:
         return jsonify({'error': 'Cars not found.'}), 404
     return render_template('map.html', coordinates=furthest_locations)
 
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    app.run(debug=True)
