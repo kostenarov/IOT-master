@@ -4,7 +4,14 @@
     <title>Index</title>
 </head>
 <body>
-    <h1>Welcome to our Flask App</h1>
-    <p>This is the index page.</p>
+    <h1>Endpoints:</h1>
+    <ul>
+        <li><a href="/">GET /</a> - Get all links</li>
+        <li>POST /data/{car_id} - Post new location to the given car</li>
+        <li>POST /data/cars - Post a new car to the data.json file</li>
+        <li><a href="/map/id/{car_id}">GET /map/id/{car_id}</a> - Get a map of all the locations in order for a given car</li>
+        <li><a href="/map/latest">GET /map/latest</a> - Get a map of the latest locations of all cars</li>
+        <li><a href="/map/furthest">GET /map/furthest</a> - Get the furthest location from a hardcoded one for all cars</li>
+    </ul>
 </body>
 </html>
