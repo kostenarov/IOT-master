@@ -1,0 +1,36 @@
+services:
+    server:
+        container_name: server-container
+        image: server-image
+        ports:
+          - 5000:5000
+        working_dir: /app
+        volumes:
+          - json-db:/app/static
+        networks:
+            - iotNetwork
+        build:
+            context: ./Container1
+            dockerfile: Dockerfile
+
+    Container2:
+        container_name: car-container
+        image: car-image
+        working_dir: /app
+        networks:
+            - iotNetwork
+        depends_on:
+            - server
+        build:
+            context: ./Container2
+            dockerfile: Dockerfile
+
+volumes:
+    json-db:
+
+networks:
+    iotNetwork:
+        external: false
+
+
+
